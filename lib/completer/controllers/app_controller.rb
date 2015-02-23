@@ -9,6 +9,12 @@
   }
 
   get :index, :provides => :json do
+    {
+      :status => "OK",
+    }.to_json
+  end
+
+  post :index, :provides => :json do
     begin
       res = social_snippet.api.complete_snippet_path(params[:q])
       {

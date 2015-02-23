@@ -1,5 +1,21 @@
 ::Completer::Application.controller :actions do
 
+  # Complete snippet path
+  post :complete, :provides => :json do
+    begin
+      res = social_snippet.api.complete_snippet_path(params[:q])
+      {
+        :status => "OK",
+        :result => res,
+      }.to_json
+    rescue => e
+      {
+        :status => "ERROR",
+        :error => e.to_s,
+      }.to_json
+    end
+  end
+
   # Install repository
   post :install, :provides => :json do
     params[:repos].each do |repo_name|

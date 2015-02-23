@@ -10,8 +10,32 @@ describe ::Completer::Application do
     before { get "/" }
     subject { last_response }
     it { should be_ok }
-    it { expect(subject.body).to eq "ok" }
+    context "parse json" do
+      subject { ::JSON.parse last_response.body }
+      it { should have_key "status" }
+      it { expect(subject["status"]).to eq "OK" }
+    end
   end
 
-end
+  describe "actions" do
+
+    context "POST /repos" do
+      let(:params) do
+        {
+          :repos => ["example-repo"],
+        }
+      end
+      let(:headers) do
+        {
+          "Content-Type" => "application/json",
+        }
+      end
+      before { post "/actions/install", params, headers }
+      subject { last_response }
+      it { should be_ok }
+    end
+
+  end # actions
+
+end # ::Completer::Application
 

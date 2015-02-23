@@ -21,4 +21,12 @@
     }.to_json
   end
 
+  post :insert, :provides => :json do
+    res = social_snippet.api.insert_snippet(params[:text])
+    {
+      :status => "OK",
+      :text => res,
+    }
+  end
+
 end

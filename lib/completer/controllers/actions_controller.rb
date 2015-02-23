@@ -32,7 +32,7 @@
     {
       :status => "OK",
       :text => res,
-    }
+    }.to_json
   end
 
 end

@@ -1,0 +1,33 @@
+language: ruby
+
+rvm:
+  - "2.2.0"
+
+services:
+  - mongodb
+
+sudo: false
+
+install:
+  - travis_retry bundle install -j4 --path vendor/bundle
+
+script:
+  - bundle exec rake spec
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: "iI6mb+N14B5LoM2cFiUBFzd3bs9oo9itoNZtJ9pRvu+aR2Bwfvg8jT0KLHTZv2PsOfrCC5mBcCWfPcDMHMYUl6xV5Gyg5tcZ3U4p++bsUvAQYsgC8gTDJbTFDbbqok1d/Me9D2ekCSxvYVNp6NX0/3TX32JRlMcwKk2RI8WIH9k="
+  app:
+    master: sspm-complete
+
+cache:
+  directories:
+    - vendor/bundle
+
+env:
+  global:
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES="YES"
+    - DISPLAY=":99.0"
+    - RACK_ENV="test"
+

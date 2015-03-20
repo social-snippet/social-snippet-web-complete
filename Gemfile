@@ -9,6 +9,7 @@ gem "mongoid"
 gem "social_snippet"
 gem "social_snippet-supports-git", :github => "social-snippet/social-snippet-supports-git", :ref => "empty"
 gem "social_snippet-supports-github"
+gem "social_snippet-supports-mongoid"
 
 group :development do
   gem "bundler"

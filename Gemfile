@@ -13,6 +13,8 @@ gem "social_snippet-supports-github"
 group :development do
   gem "bundler"
   gem "rake"
+  gem "slim"
+  gem "padrino-helpers", "~> 0.12"
 end
 
 group :test do

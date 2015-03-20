@@ -14,6 +14,8 @@ end
   logger.info "Setup GitHub Driver"
   ::SocialSnippet::Repository::DriverFactory.reset_drivers
   ::SocialSnippet::Repository::DriverFactory.add_driver SocialSnippet::Repository::Drivers::GitHubDriver
+
+  ::SocialSnippet::Supports::Mongoid.activate!
 end
 
 ::Padrino.load!

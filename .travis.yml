@@ -19,7 +19,7 @@ deploy:
   api_key:
     secure: "iI6mb+N14B5LoM2cFiUBFzd3bs9oo9itoNZtJ9pRvu+aR2Bwfvg8jT0KLHTZv2PsOfrCC5mBcCWfPcDMHMYUl6xV5Gyg5tcZ3U4p++bsUvAQYsgC8gTDJbTFDbbqok1d/Me9D2ekCSxvYVNp6NX0/3TX32JRlMcwKk2RI8WIH9k="
   app:
-    master: ssedit
+    master: ssnip
 
 cache:
   directories:

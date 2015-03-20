@@ -1,10 +1,16 @@
 $(function() {
 
+  $.ajaxSetup({
+    xhrFields: {
+      withCredentials: true
+    }
+  })
+
   var urlPrefix = "" // "https://ssnip.herokuapp.com"
 
   function getToken() {
     console.log("get token")
-    return $.get("/token")
+    return $.get(urlPrefix + "/token")
   }
 
   function sendRepos(repos, tokenInfo) {

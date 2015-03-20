@@ -1,6 +1,10 @@
 require "json"
 require "rack/parser"
 require "social_snippet"
+require "social_snippet/supports/github"
+
+SocialSnippet::Repository::DriverFactory.reset_drivers
+SocialSnippet::Repository::DriverFactory.add_driver SocialSnippet::Repository::Drivers::GitHubDriver
 
 module Completer
 

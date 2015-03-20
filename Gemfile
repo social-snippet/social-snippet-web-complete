@@ -4,6 +4,7 @@ ruby "2.2.1"
 
 gem "padrino-core", "~> 0.12"
 gem "rack-parser"
+gem "rack-cors"
 gem "mongoid"
 
 gem "social_snippet"

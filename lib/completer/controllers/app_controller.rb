@@ -7,4 +7,12 @@
     }.to_json
   end
 
+  configure :development do
+
+    get :secret do
+      render :secret_view
+    end
+
+  end
+
 end

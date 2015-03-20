@@ -19,7 +19,8 @@
   # Install repository
   post :install, :provides => :json do
     params[:repos].each do |repo_name|
-      social_snippet.api.install_repository_by_name repo_name, nil
+      repo_url = social_snippet.api.resolve_name_by_registry(repo_name)
+      social_snippet.api.install_repository(repo_url, nil)
     end
     {
       :status => "OK",

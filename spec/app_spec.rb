@@ -2,8 +2,28 @@ require "spec_helper"
 
 describe ::Completer::Application do
 
+  let(:csrf_token) { "dummy-token" }
+
   def app
     ::Completer::Application.new
+  end
+
+  def rack_session
+    {
+      :csrf => csrf_token,
+    }
+  end
+
+  def post_with_token(path, data)
+    header "X-CSRF-TOKEN", csrf_token
+    post(
+      path,
+      data.to_json,
+      {
+        "CONTENT_TYPE" => "application/json",
+        "rack.session" => rack_session,
+      },
+    )
   end
 
   context "GET /" do
@@ -30,13 +50,7 @@ describe ::Completer::Application do
         }
       end
 
-      let(:headers) do
-        {
-          "Content-Type" => "application/json",
-        }
-      end
-
-      before { post "/actions/install", install_params, headers }
+      before { post_with_token "/actions/install", install_params }
       subject { last_response }
       it { should be_ok }
 
@@ -48,7 +62,7 @@ describe ::Completer::Application do
           }
         end
 
-        before { post "/actions/complete", complete_params, headers }
+        before { post_with_token "/actions/complete", complete_params }
         subject { last_response }
         it { should be_ok }
 

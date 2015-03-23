@@ -10,7 +10,13 @@
   disable :sessions
   set :protection, false
   set :protect_from_csrf, false
-  use ::Rack::Session::Pool, :key => "s", :domain => nil, :path => "/", :expire_after => nil
+  use ::Rack::Session::Pool, {
+    :key => "s",
+    :domain => nil,
+    :path => nil,
+    :http_only => false,
+    :expire_after => nil,
+  }
   use ::Rack::Protection, :except => :http_origin
   use ::Rack::Protection::AuthenticityToken
   use ::Rack::Protection::HttpOrigin, :origin_whitelist => same_origins

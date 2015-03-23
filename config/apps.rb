@@ -24,22 +24,43 @@
   use ::Rack::Cors do
     allow do
       origins "*"
-      resource "/*", :headers => [
-        "Accept",
-        "Origin",
-        "X-Requested-With",
-        "X-CSRF-Token",
-        "Content-Type",
-      ], :methods => [
-        :get,
-        :post,
-        :options,
-        :put,
-        :delete,
-        :head,
-      ]
+      resource "/actions/*",
+        :headers => [
+          "Accept",
+          "Origin",
+          "X-Requested-With",
+          "X-CSRF-Token",
+          "Content-Type",
+        ],
+        :methods => [
+          :get,
+          :post,
+          :options,
+          :put,
+          :delete,
+          :head,
+        ]
     end
-  end
+    allow do
+      origins "*"
+      resource "/token",
+        :headers => [
+          "Accept",
+          "Origin",
+          "X-Requested-With",
+          "X-CSRF-Token",
+          "Content-Type",
+        ],
+        :methods => [
+          :get,
+          :post,
+          :options,
+          :put,
+          :delete,
+          :head,
+        ]
+    end
+  end # Rack::Cors
 end
 
 ::Padrino.mount("Completer::Application").to("/")

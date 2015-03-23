@@ -23,7 +23,7 @@
 
   use ::Rack::Cors do
     allow do
-      origins *same_origins
+      origins "*"
       resource "/*", :headers => ["Accept", "X-Requested-With", "X-CSRF-Token", "Content-Type"], :methods => [:get, :post, :options]
     end
   end

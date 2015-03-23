@@ -17,8 +17,8 @@
     :httponly => false,
     :expire_after => nil,
   }
-  use ::Rack::Protection, :except => :http_origin
-  use ::Rack::Protection::AuthenticityToken
+  use ::Rack::Protection, :except => [:http_origin, :remote_token]
+  # use ::Rack::Protection::AuthenticityToken
   use ::Rack::Protection::HttpOrigin, :origin_whitelist => same_origins
 
   use ::Rack::Cors do

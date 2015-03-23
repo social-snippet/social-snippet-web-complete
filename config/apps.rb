@@ -14,7 +14,7 @@
     :key => "s",
     :domain => nil,
     :path => nil,
-    :http_only => false,
+    :httponly => false,
     :expire_after => nil,
   }
   use ::Rack::Protection, :except => :http_origin

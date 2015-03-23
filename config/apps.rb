@@ -4,6 +4,7 @@
   ]
   # if SAME_ORIGIN = A::B then [A, B]
   same_origins.push *ENV["SAME_ORIGIN"].split("::") unless ENV["SAME_ORIGIN"].nil?
+  logger.info "same origins = #{same_origins.join $/}"
 
   logger.info "Setup rack-protection"
   disable :sessions

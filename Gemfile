@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 ruby "2.2.1"
 
+gem "puma"
 gem "padrino-core", "~> 0.12"
 gem "rack-parser"
 gem "rack-cors"

@@ -24,12 +24,7 @@
   use ::Rack::Cors do
     allow do
       origins *same_origins
-      resource "/token", :headers => [], :methods => [:get]
-    end
-
-    allow do
-      origins *same_origins
-      resource "/actions/*", :headers => ["Accept", "X-CSRF-Token", "Content-Type"], :methods => [:get, :post, :options]
+      resource "/*", :headers => ["Accept", "X-CSRF-Token", "Content-Type"], :methods => [:get, :post, :options]
     end
   end
 end

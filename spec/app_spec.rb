@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe ::Completer::Application do
+describe ::Completer::Application, :vcr do
 
   let(:csrf_token) { "dummy-token" }
 
@@ -42,6 +42,28 @@ describe ::Completer::Application do
 
   describe "actions" do
 
+    context "POST /actions/insert" do
+
+      let(:params) do
+        {
+          :text => [
+            "hello"
+          ].join($/),
+        }
+      end
+
+      before { post_with_token "/actions/insert", params }
+      subject { last_response }
+      it { should be_ok }
+
+      context "parse json" do
+        let(:result) { ::JSON.parse last_response.body }
+        subject { result["text"] }
+        it { should eq "hello" }
+      end
+
+    end
+
     context "POST /actions/install" do
 
       let(:install_params) do
@@ -53,6 +75,36 @@ describe ::Completer::Application do
       before { post_with_token "/actions/install", install_params }
       subject { last_response }
       it { should be_ok }
+
+      context "POST /actions/insert", :current => true do
+
+        let(:params) do
+          {
+            :text => [
+              "// test.cpp",
+              "// @snip <example-repo:func.cpp>",
+              "",
+              "int main() {",
+              "  return 0;",
+              "}",
+            ].join($/),
+          }
+        end
+
+        before { post_with_token "/actions/insert", params }
+        subject { last_response }
+        it { should be_ok }
+
+        context "parse json" do
+          let(:result) { ::JSON.parse last_response.body }
+          subject { result["new_ranges"] }
+          let(:expected_range) do
+            { "front" => 1, "to" => 21 }
+          end
+          it { should include expected_range }
+        end
+
+      end
 
       context "POST /actions/complete" do
 

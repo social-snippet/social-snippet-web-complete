@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe ::Completer::Application do
+describe ::Completer::Application, :vcr do
 
   let(:csrf_token) { "dummy-token" }
 

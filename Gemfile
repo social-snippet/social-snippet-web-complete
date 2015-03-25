@@ -7,6 +7,7 @@ gem "padrino-core", "~> 0.12"
 gem "rack-parser"
 gem "rack-cors"
 gem "mongoid"
+gem "diff-lcs"
 
 gem "social_snippet"
 gem "social_snippet-supports-git", :github => "social-snippet/social-snippet-supports-git", :ref => "empty"

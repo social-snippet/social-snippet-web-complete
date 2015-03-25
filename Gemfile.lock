@@ -144,6 +144,7 @@ PLATFORMS
 DEPENDENCIES
   bundler
   database_cleaner
+  diff-lcs
   factory_girl
   mongoid
   mongoid-tree

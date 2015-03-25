@@ -26,5 +26,7 @@ group :test do
   gem "database_cleaner"
   gem "factory_girl"
   gem "mongoid-tree"
+  gem "vcr"
+  gem "webmock"
 end
 

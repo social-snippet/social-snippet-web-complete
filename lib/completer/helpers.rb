@@ -25,7 +25,7 @@ module Completer::Application::Helpers
       expected != actual
     end.map do |seq|
       {
-        :front => seq.first,
+        :from => seq.first,
         :to => seq.last,
       }
     end

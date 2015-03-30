@@ -1,4 +1,4 @@
-::Completer::Application.helpers do
+module Completer::Application::Helpers
   
   def new_ranges(src, dest)
     ranges = []
@@ -32,3 +32,6 @@
   end
 
 end
+
+Completer::Application.helpers Completer::Application::Helpers
+

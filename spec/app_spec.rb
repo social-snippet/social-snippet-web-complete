@@ -76,7 +76,7 @@ describe ::Completer::Application, :vcr do
       subject { last_response }
       it { should be_ok }
 
-      context "POST /actions/insert", :current => true do
+      context "POST /actions/insert" do
 
         let(:params) do
           {

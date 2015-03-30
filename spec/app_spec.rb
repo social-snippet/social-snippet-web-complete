@@ -99,7 +99,7 @@ describe ::Completer::Application, :vcr do
           let(:result) { ::JSON.parse last_response.body }
           subject { result["new_ranges"] }
           let(:expected_range) do
-            { "from" => 1, "to" => 21 }
+            { "from" => 1, "to" => 24 }
           end
           it { should include expected_range }
         end

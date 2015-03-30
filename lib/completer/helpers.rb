@@ -8,7 +8,7 @@ module Completer::Application::Helpers
 
     # find new lines
     ::Diff::LCS.sdiff(src, dest).each do |change|
-      if change.action == "+" && cnt > last_cnt
+      if change.action != "=" && cnt > last_cnt
         last_cnt = cnt
         lines.push cnt
       end

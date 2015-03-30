@@ -23,7 +23,7 @@
 
   use ::Rack::Cors do
     allow do
-      origins "*"
+      origins *same_origins
       resource "/actions/*",
         :headers => [
           "Accept",
@@ -42,7 +42,7 @@
         ]
     end
     allow do
-      origins "*"
+      origins *same_origins
       resource "/token",
         :headers => [
           "Accept",

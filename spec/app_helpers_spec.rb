@@ -93,18 +93,33 @@ describe ::Completer::Application::Helpers, :current => true do
 
     end # single range
 
-    context "multi range" do
+    context "multi ranges" do
 
       let(:src) do
         [
           "#include <iostream>",
           "using namespace std;",
           "",
-          "// @snip <path/to/func1.cpp>",
+          "// @snippet <path/to/func1.cpp>",
+          "int func1() {",
+          "  return 1;",
+          "}",
           "",
-          "// @snip <path/to/func2.cpp>",
+          "// comment",
           "",
-          "// @snip <path/to/func3.cpp>",
+          "// @snippet <path/to/func2.cpp>",
+          "int func2() {",
+          "  return 2;",
+          "}",
+          "",
+          "// comment",
+          "",
+          "// @snippet <path/to/func3.cpp>",
+          "int func3() {",
+          "  return 3;",
+          "}",
+          "",
+          "// comment",
           "",
           "int main() {",
           "  return 0;",
@@ -118,19 +133,25 @@ describe ::Completer::Application::Helpers, :current => true do
           "using namespace std;",
           "",
           "// @snippet <path/to/func1.cpp>",
-          "int func1() {",
+          "int new_func1() {",
           "  return 1;",
           "}",
           "",
+          "// comment",
+          "",
           "// @snippet <path/to/func2.cpp>",
-          "int func2() {",
+          "int new_func2() {",
           "  return 2;",
           "}",
           "",
+          "// comment",
+          "",
           "// @snippet <path/to/func3.cpp>",
-          "int func3() {",
+          "int new_func3() {",
           "  return 3;",
           "}",
+          "",
+          "// comment",
           "",
           "int main() {",
           "  return 0;",
@@ -144,7 +165,12 @@ describe ::Completer::Application::Helpers, :current => true do
 
       it { should include expected }
 
-    end # single range
+      context "inversed args" do
+        subject { helpers.new_ranges dest, src }
+        it { should include expected }
+      end
+
+    end # multi ranges
 
   end
 

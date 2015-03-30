@@ -181,12 +181,31 @@ describe ::Completer::Application::Helpers, :current => true do
       end
 
       context "inversed args" do
+
         subject { helpers.new_ranges dest, src }
-        let(:expected) do
-          { :from => 4, :to => 4 }
+
+        context "include? 4-4" do
+          let(:expected) do
+            { :from => 4, :to => 4 }
+          end
+          it { should include expected }
         end
-        it { should include expected }
-      end
+
+        context "include? 11-11" do
+          let(:expected) do
+            { :from => 11, :to => 11 }
+          end
+          it { should include expected }
+        end
+
+        context "include? 18-18" do
+          let(:expected) do
+            { :from => 18, :to => 18 }
+          end
+          it { should include expected }
+        end
+
+      end # inversed args
 
     end # multi ranges
 
